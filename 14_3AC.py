@@ -4,6 +4,7 @@
 
 exp = str(input("Expression : "))
  
+##postfix
 post=[]
 preced ={'+':1,'-':1,"*":2,'/':2}
 s=[]
@@ -21,6 +22,7 @@ post.extend(rs)
 print(post)
 es=[]
 i=1
+
 for z  in post :
     if  z.isalpha():
         es.append(z)

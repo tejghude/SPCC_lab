@@ -1,31 +1,27 @@
 %{
-int lines=0, ch=0, words=0, space=0 , uc=0  , sc=0  ,num=0 , sch=0 ,dt=0 ;
+int lines=0,  s_c=0,s_a=0,num=0,sp_c=0,spa=0,word=0;
 %}
-digit [0-9]
-letter [a-zA-Z]
 %%
-\n    {lines++;words++;}
-[' ']  {space++;words++;}
-[A-Z]   {uc++;}
-[a-z]   {sc++;}
-[0-9]   {dt++;}
-{digit}+ {num++;}
-.    {sch++;}
+\n { lines++;}
+[' '] {spa++;}
+[\t ' ']  {word++;}
+[a-z]  { s_c++;}
+[A-Z]  { s_a++;}
+[0-9] {num++;}
+.    {sp_c++; }
 %%
-
 int main(){
-yyin= fopen("demop.txt", "r");
+yyin=fopen("demop.txt", "r"); 
 yylex();
-printf("Lines = %d\n", lines);
-printf("Words = %d\n", words);
-printf("Space = %d\n", space);
-printf("Number = %d\n", num);
-printf("Uppercase = %d\n", uc);
-printf("Smallcase = %d\n", sc);
-printf("special character = %d\n", sch);
-return 0;
-}
-int yywrap()
-{
-return 1;
-}
+if(lines!=0){
+printf(" Number of Lines= %d\n", lines+1);}
+printf(" Number of Small Case letters= %d\n", s_c);
+printf("Number of Upper Case Letters = %d\n",s_a);
+printf("Number of digits = %d\n",num);
+printf("Number of special characters = %d\n",sp_c);
+printf("Number of spaces = %d\n",spa);
+printf("Number of characters = %d\n",s_c + s_a + num + sp_c);
+printf("Number of words = %d\n",word);
+return 0;}
+ int yywrap() {
+ return 1; }
